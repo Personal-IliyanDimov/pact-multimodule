@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'org.springframework.boot' version '3.2.2'
     id 'io.spring.dependency-management' version '1.1.4'
+    id 'au.com.dius.pact' version '4.6.7'
 }
 
 group = 'org.imd'
@@ -27,8 +28,23 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'au.com.dius.pact.consumer:junit5:4.6.7'
 }
 
 tasks.named('test') {
     useJUnitPlatform()
+}
+
+pact {
+    broker {
+        pactBrokerUrl = 'http://localhost:9292'
+
+        pactBrokerUsername = 'pact'
+        pactBrokerPassword = 'pact'
+    }
+
+    publish {
+        // common use is to use git branch as the tag
+        tags = ["master"]
+    }
 }
