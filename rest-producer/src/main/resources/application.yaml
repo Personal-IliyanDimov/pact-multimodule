@@ -1,0 +1,9 @@
+server:
+  port: 9090
+
+pactbroker:
+  host: localhost
+  port: 9292
+  auth:
+    username: pact
+    password: pact
