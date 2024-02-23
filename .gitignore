@@ -6,11 +6,10 @@ build/
 
 rest-consumer/.gradle
 rest-consumer/build/
-rest-consumer/.idea/*.*
 
 
 ### IntelliJ IDEA ###
-.idea/*.*
+.idea/
 *.iws
 *.iml
 *.ipr

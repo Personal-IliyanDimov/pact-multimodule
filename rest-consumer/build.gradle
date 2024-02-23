@@ -44,7 +44,6 @@ pact {
     }
 
     publish {
-        // common use is to use git branch as the tag
         tags = ["master"]
     }
 }

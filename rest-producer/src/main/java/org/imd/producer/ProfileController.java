@@ -33,5 +33,4 @@ public class ProfileController {
     public Optional<Profile> getProfile(@PathVariable("id") int id) {
         return this.profiles.stream().filter(profile -> profile.getId() == id).findFirst();
     }
-
 }

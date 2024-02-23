@@ -4,11 +4,11 @@ import au.com.dius.pact.consumer.MockServer;
 import au.com.dius.pact.consumer.dsl.PactDslJsonArray;
 import au.com.dius.pact.consumer.dsl.PactDslJsonBody;
 import au.com.dius.pact.consumer.dsl.PactDslWithProvider;
+import au.com.dius.pact.consumer.junit5.PactConsumerTest;
 import au.com.dius.pact.consumer.junit5.PactConsumerTestExt;
 import au.com.dius.pact.consumer.junit5.PactTestFor;
 import au.com.dius.pact.core.model.PactSpecVersion;
 import au.com.dius.pact.core.model.RequestResponsePact;
-import au.com.dius.pact.core.model.V4Pact;
 import au.com.dius.pact.core.model.annotations.Pact;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -20,14 +20,15 @@ import java.time.LocalDate;
 import java.util.List;
 
 @SpringBootTest
+@PactConsumerTest
 @ExtendWith(PactConsumerTestExt.class)
-@PactTestFor(providerName = "ProfileProvider", pactVersion = PactSpecVersion.V4, port = "9999")
+@PactTestFor(providerName = "ProfileProvider", pactVersion = PactSpecVersion.V3)
 public class ProfileClientTests {
     @Autowired
     private ProfileClient profileClient;
 
     @Pact(consumer = "ProfileConsumer")
-    public V4Pact getAllProfiles(PactDslWithProvider builder) {
+    public RequestResponsePact getAllProfiles(PactDslWithProvider builder) {
         new PactDslJsonArray();
         return builder
             .given("profiles exists")
@@ -44,7 +45,7 @@ public class ProfileClientTests {
                         .date("dob")
                     .closeObject()
                 )
-            .toPact(V4Pact.class);
+            .toPact();
     }
 
     @Test
@@ -56,7 +57,7 @@ public class ProfileClientTests {
     }
 
     @Pact(consumer = "ProfileConsumer")
-    public V4Pact getSingleProfile(PactDslWithProvider builder) {
+    public RequestResponsePact getSingleProfile(PactDslWithProvider builder) {
         return builder
             .given("profiles 1 exists", "id", 1)
                 .uponReceiving("get profile with id 1")
@@ -71,7 +72,7 @@ public class ProfileClientTests {
                         .stringType("email", "fake@gmail.com")
                         .date("dob")
                 )
-            .toPact(V4Pact.class);
+            .toPact();
     }
 
     @Test

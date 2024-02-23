@@ -27,6 +27,8 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'au.com.dius:pact-jvm-provider-junit5:4.0.10'
+    testImplementation 'au.com.dius:pact-jvm-provider-junit5-spring:4.0.10'
 }
 
 tasks.named('test') {
