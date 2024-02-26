@@ -44,6 +44,6 @@ pact {
     }
 
     publish {
-        tags = ["master"]
+
     }
 }

@@ -23,7 +23,7 @@ import java.util.List;
 @PactConsumerTest
 @ExtendWith(PactConsumerTestExt.class)
 @PactTestFor(providerName = "ProfileProvider", pactVersion = PactSpecVersion.V3)
-public class ProfileClientTests {
+public class PactProfileClientTests {
     @Autowired
     private ProfileClient profileClient;
 
